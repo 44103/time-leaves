@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Record from "./components/record";
 import { EventData } from "./types";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useLocalStorage } from "usehooks-ts";
 
 const sortEvent = (a: EventData, b: EventData) => {
   return a.date.localeCompare(b.date)
@@ -14,6 +15,13 @@ function App() {
     setEventlist(eventlist?.filter((_, i) => i !== index))
   }
   const { register, handleSubmit, watch, formState: { errors } } = useForm<EventData>();
+  const [eventData, setEventData] = useLocalStorage<EventData[]>("event_data", []);
+  useEffect(() => {
+    setEventData(eventlist ?? []);
+  }, [eventlist]);
+  useEffect(() => {
+    setEventlist(eventData);
+  }, [])
 
   const handleCreate: SubmitHandler<EventData> = (event) => {
     setEventlist([event, ...eventlist ?? []].sort(sortEvent));
@@ -23,7 +31,7 @@ function App() {
     <div className="App">
       <form onSubmit={handleSubmit(handleCreate)}>
         <input {...register("summary")} />
-        <input type="datetime-local" {...register("date")} />
+        <input type="time" {...register("date")} />
         <input type="submit" />
       </form>
       <table>
