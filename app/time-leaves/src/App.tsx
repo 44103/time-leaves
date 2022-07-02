@@ -3,6 +3,10 @@ import Record from "./components/record";
 import { EventData } from "./types";
 import { useForm, SubmitHandler } from "react-hook-form";
 
+const sortEvent = (a: EventData, b: EventData) => {
+  return a.date.localeCompare(b.date)
+}
+
 function App() {
   const [eventlist, setEventlist] = useState<EventData[]>();
   const handleDelete = (index: number) => {
@@ -12,7 +16,7 @@ function App() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm<EventData>();
 
   const handleCreate: SubmitHandler<EventData> = (event) => {
-    setEventlist([event, ...eventlist ?? []]);
+    setEventlist([event, ...eventlist ?? []].sort(sortEvent));
   }
 
   return (
