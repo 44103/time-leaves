@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Record from "./components/record";
 import { EventData } from "./types";
-
+import { useForm, SubmitHandler } from "react-hook-form";
 
 function App() {
   const [eventlist, setEventlist] = useState<EventData[]>();
@@ -9,17 +9,19 @@ function App() {
     console.log(index);
     setEventlist(eventlist?.filter((_, i) => i !== index))
   }
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<EventData>();
 
-  useEffect(() => {
-    setEventlist([
-      { state: "Todo", date: new Date(), summary: "Event1" },
-      { state: "Doing", date: new Date(), summary: "Event2" },
-      { state: "Done", date: new Date(), summary: "Event3" }
-    ]);
-  }, [])
+  const handleCreate: SubmitHandler<EventData> = (event) => {
+    setEventlist([event, ...eventlist ?? []]);
+  }
 
   return (
     <div className="App">
+      <form onSubmit={handleSubmit(handleCreate)}>
+        <input {...register("summary")} />
+        <input type="datetime-local" {...register("date")} />
+        <input type="submit" />
+      </form>
       <table>
         <thead>
           <tr>

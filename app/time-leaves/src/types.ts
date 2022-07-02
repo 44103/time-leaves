@@ -1,6 +1,6 @@
 type EventData = {
   state: string;
-  date: Date;
+  date: string;
   summary: string;
 };
 
