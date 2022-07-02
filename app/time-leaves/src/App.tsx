@@ -30,8 +30,8 @@ function App() {
   return (
     <div className="App">
       <form onSubmit={handleSubmit(handleCreate)}>
-        <input {...register("summary")} />
-        <input type="time" {...register("date")} />
+        <input {...register("summary", { required: true })} />
+        <input type="time" {...register("date", { required: true })} />
         <input type="submit" />
       </form>
       <table>
