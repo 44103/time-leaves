@@ -4,4 +4,9 @@ type EventData = {
   summary: string;
 };
 
-export type { EventData };
+type EventRecord = {
+  index: number;
+  handleDelete: Function;
+} & EventData;
+
+export type { EventData, EventRecord };
