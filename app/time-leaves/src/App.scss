@@ -1,0 +1,71 @@
+feBlend {
+  float: left;
+}
+
+h1 {
+  clear: both;
+}
+
+.title {
+  display: inline-block;
+  margin: 0px 7px;
+}
+
+input[type=submit] {
+  background-color: #fecb79;
+  border: none;
+  border-radius: 7px;
+}
+
+input[type="time"] {
+  padding: 6px 15px;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 5px 30px;
+  width: 500px;
+}
+
+th.state,
+th.date,
+th.summary,
+th.del-btn {
+  background-color: #fecb79;
+}
+
+th.state {
+  width: 10%;
+}
+
+th.date,
+th.del-btn {
+  width: 15%;
+}
+
+tr:nth-child(odd) {
+  background-color: #ddd;
+}
+
+th,
+td {
+  padding: 5px 10px;
+}
+
+input {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  padding: 7px 15px;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin: 30px 5px;
+}
+
+button {
+  background-color: #fecb79;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+  padding: 7px;
+}

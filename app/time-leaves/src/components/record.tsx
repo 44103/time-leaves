@@ -3,7 +3,6 @@ import { EventRecord } from "../types";
 const Record = (data: EventRecord) => {
   return (
     <tr>
-      <td>{data.index}</td>
       <td>{data.state}</td>
       <td>{data.date}</td>
       <td>{data.summary}</td>
